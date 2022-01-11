@@ -1,36 +1,76 @@
--- CREATE TABLE IF NOT EXISTS public.organizations
--- (
---     organization_id text COLLATE pg_catalog."default" NOT NULL,
---     name text COLLATE pg_catalog."default",
---     contact_name text COLLATE pg_catalog."default",
---     contact_email text COLLATE pg_catalog."default",
---     contact_phone text COLLATE pg_catalog."default",
---     CONSTRAINT organizations_pkey PRIMARY KEY (organization_id)
--- )
---
--- TABLESPACE pg_default;
---
--- ALTER TABLE public.organizations
---     OWNER to postgres;
---
---
--- CREATE TABLE IF NOT EXISTS public.licenses
--- (
---     license_id text COLLATE pg_catalog."default" NOT NULL,
---     organization_id text COLLATE pg_catalog."default" NOT NULL,
---     description text COLLATE pg_catalog."default",
---     product_name text COLLATE pg_catalog."default" NOT NULL,
---     license_type text COLLATE pg_catalog."default" NOT NULL,
---     comment text COLLATE pg_catalog."default",
---     CONSTRAINT licenses_pkey PRIMARY KEY (license_id),
---     CONSTRAINT licenses_organization_id_fkey FOREIGN KEY (organization_id)
---         REFERENCES public.organizations (organization_id) MATCH SIMPLE
---         ON UPDATE NO ACTION
---         ON DELETE NO ACTION
---         NOT VALID
--- )
---
--- TABLESPACE pg_default;
---
--- ALTER TABLE public.licenses
---     OWNER to postgres;
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for t_file
+-- ----------------------------
+
+CREATE TABLE IF NOT EXISTS `t_file` (
+  `PK_ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `ACCENT` varchar(100) COLLATE utf8mb3_persian_ci DEFAULT NULL,
+  `ACTIVE_AT` datetime DEFAULT NULL,
+  `BUCKET` varchar(63) COLLATE utf8mb3_persian_ci NOT NULL,
+  `COUNTRY` varchar(100) COLLATE utf8mb3_persian_ci DEFAULT NULL,
+  `CREATE_AT` datetime DEFAULT NULL,
+  `DESCRIPTION` varchar(2048) COLLATE utf8mb3_persian_ci DEFAULT NULL,
+  `DIGEST` varchar(64) COLLATE utf8mb3_persian_ci DEFAULT NULL,
+  `DISLIKE_COUNTER` int(11) DEFAULT NULL,
+  `DOWNLOADED_COUNTER` bigint(20) DEFAULT NULL,
+  `DUBBED` tinyint(1) DEFAULT 0,
+  `ENABLED` tinyint(1) DEFAULT 0,
+  `ENDPOINT_STORE` varchar(100) COLLATE utf8mb3_persian_ci DEFAULT NULL,
+  `EXPIRE_AT` datetime DEFAULT NULL,
+  `FAVORITE_COUNTER` int(11) DEFAULT NULL,
+  `FILE_EXTENSION` varchar(255) COLLATE utf8mb3_persian_ci DEFAULT NULL,
+  `FILE_TYPE` varchar(20) COLLATE utf8mb3_persian_ci DEFAULT NULL,
+  `GENRE` varchar(100) COLLATE utf8mb3_persian_ci DEFAULT NULL,
+  `LANGUAGE_LEVEL` int(11) DEFAULT NULL,
+  `LIKE_COUNTER` int(11) DEFAULT NULL,
+  `MAX_AGE` int(11) DEFAULT NULL,
+  `METADATA` varchar(400) COLLATE utf8mb3_persian_ci DEFAULT NULL,
+  `MIN_AGE` int(11) DEFAULT NULL,
+  `MOBILE_NO` bigint(20) NOT NULL,
+  `OBJECT_NAME` varchar(150) COLLATE utf8mb3_persian_ci DEFAULT NULL,
+  `ORIGINAL_FILE_NAME` varchar(500) COLLATE utf8mb3_persian_ci DEFAULT NULL,
+  `OTHER_URL` varchar(250) COLLATE utf8mb3_persian_ci DEFAULT NULL,
+  `PARENT_ID` bigint(20) DEFAULT NULL,
+  `PURCHASED` tinyint(1) DEFAULT 0,
+  `RATE` float DEFAULT NULL,
+  `RELEASE_YEAR` int(11) DEFAULT NULL,
+  `REPORTED_COUNTER` int(11) DEFAULT NULL,
+  `RESTRICTED_AGE` int(11) DEFAULT NULL,
+  `SAVE_COUNTER` int(11) DEFAULT NULL,
+  `SIZE` bigint(20) DEFAULT NULL,
+  `SUBTITLED` tinyint(1) DEFAULT 0,
+  `SUMMARY_DATE_WRITTEN_AT` datetime DEFAULT NULL,
+  `TAGS` varchar(200) COLLATE utf8mb3_persian_ci DEFAULT NULL,
+  `TITLE` varchar(255) COLLATE utf8mb3_persian_ci NOT NULL,
+  `UPDATE_AT` datetime DEFAULT NULL,
+  `UUID` varchar(30) COLLATE utf8mb3_persian_ci DEFAULT NULL,
+  `VERSION` int(11) DEFAULT NULL,
+  `VIEWED_COUNTER` bigint(20) DEFAULT NULL,
+  `YOUTUBE_URL` varchar(250) COLLATE utf8mb3_persian_ci DEFAULT NULL,
+  `AUDIO_BITRATE` int(11) DEFAULT NULL,
+  `AUDIO_CHANNELS` int(11) DEFAULT NULL,
+  `COMPATIBLE_BRAND` varchar(20) COLLATE utf8mb3_persian_ci DEFAULT NULL,
+  `DURATION_MS` bigint(20) DEFAULT NULL,
+  `FORMAT` varchar(50) COLLATE utf8mb3_persian_ci DEFAULT NULL,
+  `IMAGE_HEIGHT` int(11) DEFAULT NULL,
+  `IMAGE_WIDTH` int(11) DEFAULT NULL,
+  `LENGTH_IN_FRAMES` int(11) DEFAULT NULL,
+  `MAJOR_BRAND` varchar(20) COLLATE utf8mb3_persian_ci DEFAULT NULL,
+  `VIDEO_BITRATE` int(11) DEFAULT NULL,
+  `VIDEO_CREATE_AT` datetime DEFAULT NULL,
+  `VIDEO_FRAME_RATE` double DEFAULT NULL,
+  `VIDEO_QUALITY` int(11) DEFAULT NULL,
+  `VIDEO_RELEASE_FORMAT` varchar(255) COLLATE utf8mb3_persian_ci DEFAULT NULL,
+  `FK_VIDEO_CHANNEL` varchar(150) COLLATE utf8mb3_persian_ci DEFAULT NULL,
+  `IS_PUBLIC` tinyint(1) DEFAULT 0,
+  `CONTENT_TYPE` varchar(200) CHARACTER SET utf8mb3 DEFAULT NULL,
+  PRIMARY KEY (`PK_ID`),
+  UNIQUE KEY `UNQ_FILE_NAM_OBJ_NAME` (`BUCKET`,`OBJECT_NAME`),
+  UNIQUE KEY `UNQ_FILE_DIGEST` (`DIGEST`),
+  KEY `IDX_FILE_MOBILE_NO` (`MOBILE_NO`)
+) ENGINE=InnoDB AUTO_INCREMENT=14430 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_persian_ci;
+
+SET FOREIGN_KEY_CHECKS = 1;

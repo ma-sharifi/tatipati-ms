@@ -5,6 +5,13 @@ spring:
     active: dev
   cloud:
     config:
-      uri: http://localhost:8071
+#      uri: http://localhost:8071
+      uri: http://configserver:8071
 server:
   port: 8081
+
+management.endpoints.enabled-by-default: false
+management.endpoint.health:
+  enabled: true
+  show-details: always
+

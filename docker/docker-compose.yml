@@ -6,14 +6,14 @@ services:
       - "3307:3306"
     environment:
       MYSQL_DATABASE: tatipati
-      MYSQL_USER: root
+     #MYSQL_USER: root # ERROR 1396 (HY000) at line 2: Operation CREATE USER failed for 'root'@'%' -> {https://stackoverflow.com/questions/45086162/docker-mysql-error-1396-hy000-operation-create-user-failed-for-root}
       MYSQL_PASSWORD: root
       MYSQL_ROOT_PASSWORD: root #${MARIADB_ROOT_PASSWORD}
 #    restart: always
     volumes:
-        - ./init.sql:/docker-entrypoint-initdb.d/1-init.sql
+        - ./init.sql:/docker-entrypoint-initdb.d/1-init.sql #./init.sql MEANS docker/init.sql files.
         - ./data.sql:/docker-entrypoint-initdb.d/2-data.sql
-        - ./mariadb_data:/var/lib/mysql
+        - /dev/maria/mariadb_data:/var/lib/mysql
     networks:
       backend:
         aliases:
@@ -27,12 +27,25 @@ services:
     image: tatipati/configserver:0.0.1-SNAPSHOT
     ports:
        - "8071:8071"
-    environment:
-      ENCRYPT_KEY: "fje83Ki8403Iod87dne7Yjsl3THueh48jfuO9j4U2hf64Lo"
+#    environment:
+#      ENCRYPT_KEY: "fje83Ki8403Iod87dne7Yjsl3THueh48jfuO9j4U2hf64Lo"
     networks:
       backend:
         aliases:
           - "configserver"
+  eurekaserver:
+    image: tatipati/eurekaserver:0.0.1-SNAPSHOT
+    ports:
+      - "8070:8070"
+    depends_on:
+#      database:
+#        condition: service_healthy
+      configserver:
+        condition: service_started
+    networks:
+      backend:
+        aliases:
+          - "eurekaserver"
   filegservice:
     image: tatipati/file-service:0.0.1-SNAPSHOT
     environment:
@@ -41,10 +54,10 @@ services:
       CONFIGSERVER_URI: "http://configserver:8071"
       CONFIGSERVER_PORT:   "8071"
       DATABASESERVER_PORT: "3307"
-      ENCRYPT_KEY:       "IMSYMMETRIC"
+#      ENCRYPT_KEY:       "IMSYMMETRIC"
     depends_on:
-      database:
-        condition: service_healthy
+#      database:
+#        condition: service_healthy
       configserver:
         condition: service_started
     ports:
