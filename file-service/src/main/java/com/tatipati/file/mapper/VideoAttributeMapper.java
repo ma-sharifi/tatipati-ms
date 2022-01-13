@@ -15,6 +15,5 @@ public interface VideoAttributeMapper {
     default void updateResult(@MappingTarget VideoAttributeDto dto) {
         dto.setDurationString(ConvertAnything.videoDurationSecToString(dto.getDurationMS()));
     }
-//    @Mapping(source = "AudioBitrate", target = "audioBitrate")
     VideoAttributeDto toDto(VideoAttribute videoAttribute);
 }

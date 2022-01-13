@@ -24,7 +24,7 @@ To clone and run this application, you'll need [Git](https://git-scm.com), [Mave
 $ git clone https://github.com/picher_s/tatipati-ms
 
 # To build the code as a docker image, open a command-line 
-# window and execute the following command:
+# window and execute the following command for each of module:
 $ mvn clean package dockerfile:build
 
 # Now we are going to use docker-compose to start the actual image.  To start the docker image, stay in the directory containing  your chapter 5 source code and  Run the following command: 
