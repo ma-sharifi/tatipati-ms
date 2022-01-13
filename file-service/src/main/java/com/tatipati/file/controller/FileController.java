@@ -37,18 +37,17 @@ public class FileController {
 //                .body(fileDto);
         return ResponseEntity.ok(fileDtoResponse);
     }
-
-    @GetMapping("/{file-uuid}")
-    public ResponseEntity<FileDto> getFile(@PathVariable("file-uuid") String uuid) {
-        FileDto fileDto = fileService.getFile(uuid);
-        fileDto.add(
-                linkTo(methodOn(FileController.class).getFile(uuid)).withSelfRel(),
-                linkTo(methodOn(FileController.class).createFile(null)).withRel("create-file"),
-                linkTo(methodOn(FileController.class).updateFile(null)).withRel("update-file"),
-                linkTo(methodOn(FileController.class).deleteFile(uuid)).withRel("delete-file") //health-path
-        );
+    @GetMapping("/{id}")
+    public ResponseEntity<FileDto> getFile(@PathVariable("id") Long id) {
+        FileDto fileDto = fileService.getFile(id);
+//        fileDto.add(
+//                linkTo(methodOn(FileController.class).getFile(id)).withSelfRel(),
+//                linkTo(methodOn(FileController.class).createFile(null)).withRel("create-file"),
+//                linkTo(methodOn(FileController.class).updateFile(null)).withRel("update-file"),
+//                linkTo(methodOn(FileController.class).deleteFile(id)).withRel("delete-file") //health-path
+//        );
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(linkTo(FileController.class).slash(uuid).toUri());
+        headers.setLocation(linkTo(FileController.class).slash(id).toUri());
         //status(HttpStatus.CREATED).location(location)
 
         return ResponseEntity
@@ -57,13 +56,32 @@ public class FileController {
                 .body(fileDto);
     }
 
+//    @GetMapping("/uuid/{file-uuid}")
+//    public ResponseEntity<FileDto> getFile(@PathVariable("file-uuid") String uuid) {
+//        FileDto fileDto = fileService.getFile(uuid);
+//        fileDto.add(
+//                linkTo(methodOn(FileController.class).getFile(uuid)).withSelfRel(),
+//                linkTo(methodOn(FileController.class).createFile(null)).withRel("create-file"),
+//                linkTo(methodOn(FileController.class).updateFile(null)).withRel("update-file"),
+//                linkTo(methodOn(FileController.class).deleteFile(uuid)).withRel("delete-file") //health-path
+//        );
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.setLocation(linkTo(FileController.class).slash(uuid).toUri());
+//        //status(HttpStatus.CREATED).location(location)
+//
+//        return ResponseEntity
+//                .status(HttpStatus.OK)//
+//                .headers(headers)
+//                .body(fileDto);
+//    }
+
     @PutMapping
     public ResponseEntity<String> updateFile(@RequestBody FileDto fileDto) {
         return ResponseEntity.ok(fileService.updateFile(fileDto));
     }
 
-    @DeleteMapping("/{file-uuid}")
-    public ResponseEntity<String> deleteFile(@PathVariable("file-uuid") String uuid){
-        return ResponseEntity.ok(fileService.deleteFile(uuid));
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteFile(@PathVariable("id") Long id){
+        return ResponseEntity.ok(fileService.deleteFile(id));
     }
 }

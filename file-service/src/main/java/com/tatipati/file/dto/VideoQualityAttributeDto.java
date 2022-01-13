@@ -13,14 +13,14 @@ import lombok.EqualsAndHashCode;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class VideoQualityAttribute extends GSONModel {
+public class VideoQualityAttributeDto extends GSONModel {
     private int height;
     private int width;
 
-    public VideoQualityAttribute() {
+    public VideoQualityAttributeDto() {
     }
 
-    public VideoQualityAttribute(int height, int width) {
+    public VideoQualityAttributeDto(int height, int width) {
         this.height = height;
         this.width = width;
     }

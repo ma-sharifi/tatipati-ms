@@ -7,20 +7,23 @@ Welcome to Tatipati Tatipati Kids Microservice.
 2.  A file service that will manage file data used within Tatipati.
 3.  A MariaDB database used to hold the data.
 
+## TatiPati Architecture
+![](https://s20.picofile.com/file/8446307500/TatiPati_Architecture_small.jpg "")
+
+
 ## Initial Configuration
 1.	Apache Maven (http://maven.apache.org)  All of the code examples in this book have been compiled with Java version 11.
 2.	Git Client (http://git-scm.com)
 3.  Docker(https://www.docker.com/products/docker-desktop)
 
 ## How To Use
-
 To clone and run this application, you'll need [Git](https://git-scm.com), [Maven](https://maven.apache.org/), [Java 11](https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html). From your command line:
 
 ```bash
 # Clone this repository
 $ git clone https://github.com/picher_s/tatipati-ms
 
-# To build the code examples for Chapter 5 as a docker image, open a command-line 
+# To build the code as a docker image, open a command-line 
 # window and execute the following command:
 $ mvn clean package dockerfile:build
 
@@ -28,19 +31,19 @@ $ mvn clean package dockerfile:build
 $ docker-compose -f docker/docker-compose.yml up
 ```
 
-# The build command
+## The build command
 
 Will execute the [Spotify dockerfile plugin](https://github.com/spotify/dockerfile-maven) defined in the pom.xml file.  
 
 This is a multiple Spring projects that need to be be built and compiled.  Running the above command at the root of the project directory will build all of the projects.  If everything builds successfully you should see a message indicating that the build was successful.
 
-# The Run command
+## The Run command
 
 This command will run our services using the docker-compose.yml file located in the /docker directory. 
 
 If everything starts correctly you should see a bunch of Spring Boot information fly by on standard out.  At this point all of the services needed for the chapter code examples will be running.
 
-# Database
+## Database
 You can find the database script as well in the docker directory.
 
 ## Contact

@@ -72,5 +72,33 @@ CREATE TABLE IF NOT EXISTS `t_file` (
   UNIQUE KEY `UNQ_FILE_DIGEST` (`DIGEST`),
   KEY `IDX_FILE_MOBILE_NO` (`MOBILE_NO`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14430 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_persian_ci;
+SET FOREIGN_KEY_CHECKS = 1;
+
+
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+-- ----------------------------
+-- Table structure for t_video_channel
+-- ----------------------------
+CREATE TABLE IF NOT EXISTS `t_video_channel` (
+  `PK_ID` varchar(150) COLLATE utf8mb3_persian_ci NOT NULL,
+  `BANNER_URL` varchar(255) COLLATE utf8mb3_persian_ci DEFAULT NULL,
+  `BUCKET` varchar(63) COLLATE utf8mb3_persian_ci NOT NULL,
+  `CREATE_AT` datetime DEFAULT NULL,
+  `DESCRIPTION` varchar(1000) COLLATE utf8mb3_persian_ci DEFAULT NULL,
+  `ENABLED` tinyint(1) DEFAULT 0,
+  `GOAL` varchar(60) COLLATE utf8mb3_persian_ci DEFAULT NULL,
+  `LANGUAGE_LEVEL` int(11) DEFAULT NULL,
+  `MAX_AGE` int(11) DEFAULT NULL,
+  `MIN_AGE` int(11) DEFAULT NULL,
+  `SOURCE` varchar(60) COLLATE utf8mb3_persian_ci DEFAULT NULL,
+  `SOURCE_URL` varchar(255) COLLATE utf8mb3_persian_ci DEFAULT NULL,
+  `SUBSCRIBERS_COUNTER` int(11) DEFAULT NULL,
+  `TITLE` varchar(255) COLLATE utf8mb3_persian_ci NOT NULL,
+  `UPDATE_AT` datetime DEFAULT NULL,
+  `VERSION` int(11) DEFAULT NULL,
+  `FOLDER` varchar(255) COLLATE utf8mb3_persian_ci DEFAULT NULL,
+  PRIMARY KEY (`PK_ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_persian_ci;
 
 SET FOREIGN_KEY_CHECKS = 1;

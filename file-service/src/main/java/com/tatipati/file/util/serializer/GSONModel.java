@@ -2,6 +2,8 @@ package com.tatipati.file.util.serializer;
 
 
 import lombok.EqualsAndHashCode;
+import org.springframework.hateoas.RepresentationModel;
+
 import java.util.Map;
 
 /**
